@@ -1,7 +1,5 @@
-# Matthew Burke coding blog
+Write ups ordered by topic.
 
-Write ups of various coding topics to help me remember them.
-
-## Table of contents
+### Caches
 
 * [Find the nearest repeated entries in an array](nearest_repeated_entries.md)

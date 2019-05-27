@@ -30,7 +30,7 @@
   <body>
     <div class="wrapper">
       <header >
-        <h1>blog</h1>
+        <h1><a href="./index.html">Matthew Burke Coding Blog</a></h1>
         
           <p>Write ups of various coding topics to help me remember them.</p>
         
@@ -68,7 +68,8 @@ So a carefree solution might be the following:</p>
             <span class="k">break</span>
     <span class="k">return</span> <span class="n">gap</span></code></pre></figure>
 
-<p>which has <code class="highlighter-rouge">O(n^2)</code> time complexity. Notice also that we are making multiple passes over the data.</p>
+<p>which has <code class="highlighter-rouge">O(n^2)</code> time complexity and <code class="highlighter-rouge">O(1)</code> space complexity.
+Notice also that we are making multiple passes over the data.</p>
 
 <p>A cache improves the time complexity because it makes the outer loop redundant.
 We don’t have to iterate through the array for each element but only keep track of the most recent occurrence of each element.
@@ -82,6 +83,8 @@ This could look like:</p>
             <span class="n">gap</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="n">last_occurrence</span><span class="p">[</span><span class="n">ele</span><span class="p">]</span>
         <span class="n">last_occurrence</span><span class="p">[</span><span class="n">ele</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
     <span class="k">return</span> <span class="n">gap</span></code></pre></figure>
+
+<p>which has time complexity <code class="highlighter-rouge">O(n)</code> and <code class="highlighter-rouge">O(n)</code> space complexity.</p>
 
 
       </section>

@@ -22,7 +22,8 @@ def bf_nearest_repeat(l): # O(n^2)
             break
     return gap
 {% endhighlight %}
-which has `O(n^2)` time complexity. Notice also that we are making multiple passes over the data.
+which has `O(n^2)` time complexity and `O(1)` space complexity.
+Notice also that we are making multiple passes over the data.
 
 A cache improves the time complexity because it makes the outer loop redundant.
 We don't have to iterate through the array for each element but only keep track of the most recent occurrence of each element.
@@ -37,3 +38,4 @@ def nearest_repeat(l): # O(n)
         last_occurrence[ele] = i
     return gap
 {% endhighlight %}
+which has time complexity `O(n)` and `O(n)` space complexity.
