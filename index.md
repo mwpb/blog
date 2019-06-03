@@ -13,5 +13,5 @@ My homepage is [here](https://mwpb.uk).
 
 ### Graphs
 
-* [Inverse function theorem](inverse-function-theorem.md)
-* [Inscribed triangle](inscribed.html)	
+* [Inverse function theorem](inverse-function-theorem.html)
+* [Inscribed triangle](inscribed.html)
