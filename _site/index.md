@@ -1,7 +1,11 @@
 Write ups of topics in coding and mathematics to help me remember them.
 My homepage is [here](https://mwpb.uk).
 
-### Caches
+### Greedy algorithms
+
+* [Minimum absolute difference](nearest_abs_difference.md)
+
+### Hash tables
 
 * [Find the nearest repeated entries in an array](nearest_repeated_entries.md)
 
@@ -13,5 +17,5 @@ My homepage is [here](https://mwpb.uk).
 
 ### Graphs
 
-* [Inverse function theorem](inverse-function-theorem.md)
+* [Inverse function theorem](inverse-function-theorem.html)
 * [Inscribed triangle](inscribed.html)
