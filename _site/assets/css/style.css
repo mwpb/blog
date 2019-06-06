@@ -2764,3 +2764,5 @@ pre { margin-top: 0; margin-bottom: 0; font-family: "SFMono-Regular", Consolas, 
 .highlight .w { color: #bbbbbb; }
 
 .highlight { background-color: #f8f8f8; }
+
+body { max-width: 80ch; margin: auto; overflow-wrap: break-word; word-wrap: break-word; -webkit-hyphens: auto; -ms-hyphens: auto; -moz-hyphens: auto; hyphens: auto; text-align: justify; }

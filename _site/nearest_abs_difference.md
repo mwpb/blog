@@ -4,6 +4,7 @@
 
 The built-in Python array sorting algorithm invoked by `sorted(-)` uses the [timsort](https://en.wikipedia.org/wiki/Timsort) algorithm which has worst case time complexity `O(n log(n))`. 
 This means that if we have a programme involving arrays which has complexity worse than `O(n log(n))` it might be appropriate to sort the arrays first.
+(Note that finding a way to use a hash table cache as in [Find the nearest repeated entries in an array](nearest_repeated_entries.md) is even better. But that might not be possible.)
 
 Consider the following example from the Hackerrank problem 'Minimum Absolute Difference in an Array':-
 

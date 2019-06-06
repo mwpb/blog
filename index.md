@@ -9,6 +9,10 @@ My homepage is [here](https://mwpb.uk).
 
 * [Minimum absolute difference](nearest_abs_difference.md)
 
+### Graphs and trees
+
+* [Road and libraries](roads-and-libraries.md)
+
 ### Eigenvectors and eigenvalues without determinants
 
 * [Introduction](introEigenvectors.md)
