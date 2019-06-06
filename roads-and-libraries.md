@@ -24,17 +24,63 @@ Initially I tried to use a cache to keep track of the connected components that 
 However it quickly became apparent that my attempts to keep this cache updated correctly wasn't going to get better than `O(v+e)`.
 Then I tried a BFS with *an inappropriate Python queue library*.
 (I used `queue.Queue()` rather than `collections.deque`.)
+
+{% highlight python %}
+def bfs_wrong_queue(start, adj_list, visited): # O(??)
+    q = queue.Queue()
+    q.put(start)
+    out = [start]
+    visited.add(start)
+    while q.qsize():
+        node = q.get()
+        for x in adj_list[node]:
+            if x not in visited:
+                q.put(x)
+                visited.add(x)
+                out.append(x)
+    return out, visited
+{% endhighlight %}
+
 With this mistake a single Hackerrank test case gave me a: `Terminated due to timeout`.
 (All the rest passed.)
 Next using the usual Python list as a stack I implemented a DFS which passed all of the Hackerrank test cases.
-
+{% highlight python%}
+def dfs(start, adj_list, visited): # O(v+e)
+    search_path = [start]
+    visited.add(start)
+    out = [start]
+    while search_path:
+        node = search_path[-1]
+        if not adj_list[node]:
+            search_path.pop()
+        else:
+            next_node = adj_list[node].pop()
+            if next_node not in visited:
+                visited.add(next_node)
+                search_path.append(next_node)
+                out.append(next_node)
+    return out, visited
+{% endhighlight %}
 At this point I tried quite hard (and in vain) to find a good reason why DFS was a better choice *in terms of time complexity*.
 This was complicated by the fact that people seem to prefer DFS when visiting every vertex.
 (Presumably this is for the space-saving advantages mentioned above.)
-When I realised my mistake and used the appropriate queue library my BFS solution passed the Hackerrank test cases also.
-
+When I realised my mistake and used the appropriate queue library my BFS solution passed the Hackerrank test cases also:
+{% highlight python%}
+def bfs(start, adj_list, visited): # O(v+e)
+    q = deque()
+    q.append(start)
+    out = [start]
+    visited.add(start)
+    while len(q):
+        node = q.popleft()
+        for x in adj_list[node]:
+            if x not in visited:
+                q.append(x)
+                visited.add(x)
+                out.append(x)
+    return out, visited
+{% endhighlight%}
 The complete solution is displayed below:
-
 {% highlight python %}
 import queue
 from collections import deque

@@ -52,15 +52,60 @@ It appears that one can use a BFS on a tree also.</p>
 Initially I tried to use a cache to keep track of the connected components that a vertex belonged to.
 However it quickly became apparent that my attempts to keep this cache updated correctly wasn’t going to get better than <code class="highlighter-rouge">O(v+e)</code>.
 Then I tried a BFS with <em>an inappropriate Python queue library</em>.
-(I used <code class="highlighter-rouge">queue.Queue()</code> rather than <code class="highlighter-rouge">collections.deque</code>.)
-With this mistake a single Hackerrank test case gave me a: <code class="highlighter-rouge">Terminated due to timeout</code>.
+(I used <code class="highlighter-rouge">queue.Queue()</code> rather than <code class="highlighter-rouge">collections.deque</code>.)</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">bfs_wrong_queue</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">adj_list</span><span class="p">,</span> <span class="n">visited</span><span class="p">):</span> <span class="c"># O(??)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+    <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+    <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">q</span><span class="o">.</span><span class="n">qsize</span><span class="p">():</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">adj_list</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span><span class="p">,</span> <span class="n">visited</span></code></pre></figure>
+
+<p>With this mistake a single Hackerrank test case gave me a: <code class="highlighter-rouge">Terminated due to timeout</code>.
 (All the rest passed.)
 Next using the usual Python list as a stack I implemented a DFS which passed all of the Hackerrank test cases.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">adj_list</span><span class="p">,</span> <span class="n">visited</span><span class="p">):</span> <span class="c"># O(v+e)</span>
+    <span class="n">search_path</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+    <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">search_path</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">search_path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">adj_list</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+            <span class="n">search_path</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">next_node</span> <span class="o">=</span> <span class="n">adj_list</span><span class="p">[</span><span class="n">node</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">next_node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">next_node</span><span class="p">)</span>
+                <span class="n">search_path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_node</span><span class="p">)</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_node</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span><span class="p">,</span> <span class="n">visited</span></code></pre></figure>
 
 <p>At this point I tried quite hard (and in vain) to find a good reason why DFS was a better choice <em>in terms of time complexity</em>.
 This was complicated by the fact that people seem to prefer DFS when visiting every vertex.
 (Presumably this is for the space-saving advantages mentioned above.)
-When I realised my mistake and used the appropriate queue library my BFS solution passed the Hackerrank test cases also.</p>
+When I realised my mistake and used the appropriate queue library my BFS solution passed the Hackerrank test cases also:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">adj_list</span><span class="p">,</span> <span class="n">visited</span><span class="p">):</span> <span class="c"># O(v+e)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+    <span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+    <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">adj_list</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                <span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span><span class="p">,</span> <span class="n">visited</span></code></pre></figure>
 
 <p>The complete solution is displayed below:</p>
 
