@@ -1,4 +1,5 @@
 Write ups of topics in coding and mathematics to help me remember them.
+
 My homepage is [here](https://mwpb.uk).
 
 ### Hash tables
@@ -12,6 +13,14 @@ My homepage is [here](https://mwpb.uk).
 ### Graphs and trees
 
 * [Road and libraries](roads-and-libraries.md)
+
+### Bit twiddles
+
+* [List of bit twiddles](list-bit-twiddles.md)
+
+### Python built-in data structures
+
+* [Python data structures](python-data-structures.md)
 
 ### Eigenvectors and eigenvalues without determinants
 
