@@ -19,7 +19,7 @@
 {"description":"write ups of topics in coding and mathematics to help me remember them","@type":"WebPage","url":"http://localhost:4000/python-data-structures.html","headline":"Python data structures","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/assets/css/style.css?v=e3fb393f6b76c43a1a5f89647c7150194fd8fd9c">
+    <link rel="stylesheet" href="/assets/css/style.css?v=82350ebe733b46111ecb40962ba89bccf6b6ef8b">
   </head>
   <body>
     <div class="container-lg px-3 my-5 markdown-body">
@@ -43,6 +43,23 @@ For instance:</p>
 <span class="n">a</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span></code></pre></figure>
 
 <p>just like the usual list type.</p>
+
+<h2 id="heaps">Heaps</h2>
+
+<p>Any list <code class="highlighter-rouge">l</code> can be transformed to a min-heap using <code class="highlighter-rouge">heapq.heapify(l)</code>.
+(The heap uses the convention that the elements at <code class="highlighter-rouge">2n+1</code> and <code class="highlighter-rouge">2n+2</code> are the children of the element at <code class="highlighter-rouge">n</code>.)
+Then <code class="highlighter-rouge">heapq.heappush(heap, ele)</code> provides the <code class="highlighter-rouge">O(log(n))</code> function to put <code class="highlighter-rouge">ele</code> in a legitimate position.
+The smallest element can be accessed in <code class="highlighter-rouge">O(1)</code> time with <code class="highlighter-rouge">l[0]</code> (after heapifying).
+To remove the top element use <code class="highlighter-rouge">heappop(heap)</code> which is <code class="highlighter-rouge">O(log(n))</code> because it has to rearrange the rest of the elements into a heap.
+There is also <code class="highlighter-rouge">heappushpop(heap, ele)</code> which is slightly faster than the two separate commands and is useful when we want to keep the heap at a constant size.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">heapq</span> <span class="kn">import</span> <span class="n">heapify</span><span class="p">,</span> <span class="n">heappush</span><span class="p">,</span> <span class="n">heappop</span>
+<span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">heapify</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="c"># l = [1, 2, 3, 6, 4, 5]</span>
+<span class="n">heappush</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="mi">45</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="c"># a = 	1, l = [2, 4, 3, 6, 45, 5] </span></code></pre></figure>
+
+<p>where we note that each of the functions must take the heap as their first argument.</p>
 
 <h2 id="queues">Queues</h2>
 

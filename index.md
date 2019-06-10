@@ -6,9 +6,10 @@ My homepage is [here](https://mwpb.uk).
 
 * [Find the nearest repeated entries in an array](nearest_repeated_entries.md)
 
-### Greedy algorithms
+### Sorting
 
 * [Minimum absolute difference](nearest_abs_difference.md)
+* [Find kth largest element](find-kth-largest-element.md)
 
 ### Graphs and trees
 
