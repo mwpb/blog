@@ -40,7 +40,7 @@ For instance:
 from collections import deque
 s = deque()
 s.appendleft('a')
-a = s.popleft()
+a = s.pop()
 {% endhighlight %}
 and `queue.Queue()` is probably not appropriate as it is intended to allow different threads to communicate.
 
