@@ -14,14 +14,16 @@ My homepage is [here](https://mwpb.uk).
 ### Graphs and trees
 
 * [Road and libraries](roads-and-libraries.md)
+* [Find nearest clone](find-nearest-clone.md)
 
 ### Bit twiddles
 
 * [List of bit twiddles](list-bit-twiddles.md)
 
-### Python built-in data structures
+### Python data structures
 
-* [Python data structures](python-data-structures.md)
+* [Python built-in data structures](python-data-structures.md)
+* [Implement queue with two stacks](q-with-two-stacks.md)
 
 ### Eigenvectors and eigenvalues without determinants
 
