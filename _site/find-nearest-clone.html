@@ -19,7 +19,7 @@
 {"description":"write ups of topics in coding and mathematics to help me remember them","@type":"WebPage","url":"http://localhost:4000/find-nearest-clone.html","headline":"Find nearest clone","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/assets/css/style.css?v=26e8174626816c03cebed082949e8567d28a5379">
+    <link rel="stylesheet" href="/assets/css/style.css?v=8e4255953dd8cee03ca4d7ab8d8eabcc17c3c562">
   </head>
   <body>
     <div class="container-lg px-3 my-5 markdown-body">
@@ -31,47 +31,77 @@
 
 <p>(Hackerrank ‘Find the nearest clone’ problem.)</p>
 
-<p>def get_adj_dict(graph_nodes, graph_from, graph_to):
-    adj_dict = defaultdict(list)
-    for i, start in enumerate(graph_from):
-        adj_dict[start].append(graph_to[i])
-        adj_dict[graph_to[i]].append(start)
-    return adj_dict</p>
+<p>One advantage of a breadth-first search over a depth-first search is that we can extract the shortest distance between two nodes.
+One way of doing this (at the cost of a little extra space) is to use a queue whose elements consist not simply of nodes but of pairs <code class="highlighter-rouge">(d, n)</code> where <code class="highlighter-rouge">n</code> is a node and <code class="highlighter-rouge">d</code> is an integer recording the distance from the start node.</p>
 
-<p>def bfs(start, adj_dict, color, visited, color_lookup):
-    q = deque([(start, 0)])
-    while len(q):
-        node, distance = q.pop()
-        for next_node in adj_dict[node]:
-            if next_node not in visited:
-                if color_lookup[next_node] == color:
-                    return distance+1, next_node
-                visited.add(next_node)
-                q.appendleft((next_node, distance+1))
-    return -1, None</p>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">adj_dict</span><span class="p">,</span> <span class="n">is_end_node</span><span class="p">):</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([])</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([(</span><span class="n">start</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+        <span class="n">node</span><span class="p">,</span> <span class="n">distance</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">next_node</span> <span class="ow">in</span> <span class="n">adj_dict</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">next_node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">is_end_node</span><span class="p">(</span><span class="n">next_node</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">distance</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">next_node</span>
+                <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">next_node</span><span class="p">)</span>
+                <span class="n">q</span><span class="o">.</span><span class="n">appendleft</span><span class="p">((</span><span class="n">next_node</span><span class="p">,</span> <span class="n">distance</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">None</span></code></pre></figure>
 
-<p>def get_color_lookup(ids):
-    color_lookup = {}
-    for i, color in enumerate(ids):
-        color_lookup[i+1] = color
-    return color_lookup</p>
+<p>where we have assumed that we are given a function <code class="highlighter-rouge">is_end_node</code> that tells us if a particular node is the one we are searching for.
+Consider the following problem (from Hackerrank):</p>
+<ul>
+  <li>start with a <em>connected</em> and coloured graph</li>
+  <li>given a single colour</li>
+  <li>find the shortest path between nodes of that colour</li>
+</ul>
 
-<p>def findShortest(graph_nodes, graph_from, graph_to, ids, val):
-    adj_dict = get_adj_dict(graph_nodes, graph_from, graph_to)
-    color_lookup = get_color_lookup(ids)
-    try:
-        node = ids.index(val) + 1
-    except:
-        return -1
-    visited = set([node])
-    out = float(‘inf’)
-    while len(visited) &lt; graph_nodes:
-        x, node = bfs(node, adj_dict, val, visited, color_lookup)
-        if x == -1:
-            break
-        elif x &lt; out:
-            out = x
-    return -1 if out == float(‘inf’) else out</p>
+<p>The idea is to find the first node <code class="highlighter-rouge">n1</code> of the correct colour <code class="highlighter-rouge">c</code> and find the shortest path starting at that node to another node <code class="highlighter-rouge">n2</code> of colour <code class="highlighter-rouge">c</code>.
+Then – marking the nodes <code class="highlighter-rouge">n1</code> and <code class="highlighter-rouge">n2</code> as visited – find the nearest <code class="highlighter-rouge">n3</code> of colour <code class="highlighter-rouge">c</code> to <code class="highlighter-rouge">n2</code> that is not marked as visited.
+Repeating we will take into account every node of colour <code class="highlighter-rouge">c</code> because the graph is connected.
+Then we can record the shortest of the lengths of the paths we calculated.
+The full solution might look like:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_adj_dict</span><span class="p">(</span><span class="n">graph_nodes</span><span class="p">,</span> <span class="n">graph_from</span><span class="p">,</span> <span class="n">graph_to</span><span class="p">):</span>
+    <span class="n">adj_dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">graph_from</span><span class="p">):</span>
+        <span class="n">adj_dict</span><span class="p">[</span><span class="n">start</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">graph_to</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">adj_dict</span><span class="p">[</span><span class="n">graph_to</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">adj_dict</span>
+
+<span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">adj_dict</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">visited</span><span class="p">,</span> <span class="n">color_lookup</span><span class="p">):</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([(</span><span class="n">start</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+        <span class="n">node</span><span class="p">,</span> <span class="n">distance</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">next_node</span> <span class="ow">in</span> <span class="n">adj_dict</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">next_node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">color_lookup</span><span class="p">[</span><span class="n">next_node</span><span class="p">]</span> <span class="o">==</span> <span class="n">color</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">distance</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">next_node</span>
+                <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">next_node</span><span class="p">)</span>
+                <span class="n">q</span><span class="o">.</span><span class="n">appendleft</span><span class="p">((</span><span class="n">next_node</span><span class="p">,</span> <span class="n">distance</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">get_color_lookup</span><span class="p">(</span><span class="n">ids</span><span class="p">):</span>
+    <span class="n">color_lookup</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ids</span><span class="p">):</span>
+        <span class="n">color_lookup</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
+    <span class="k">return</span> <span class="n">color_lookup</span>
+
+<span class="k">def</span> <span class="nf">findShortest</span><span class="p">(</span><span class="n">graph_nodes</span><span class="p">,</span> <span class="n">graph_from</span><span class="p">,</span> <span class="n">graph_to</span><span class="p">,</span> <span class="n">ids</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+    <span class="n">adj_dict</span> <span class="o">=</span> <span class="n">get_adj_dict</span><span class="p">(</span><span class="n">graph_nodes</span><span class="p">,</span> <span class="n">graph_from</span><span class="p">,</span> <span class="n">graph_to</span><span class="p">)</span>
+    <span class="n">color_lookup</span> <span class="o">=</span> <span class="n">get_color_lookup</span><span class="p">(</span><span class="n">ids</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">ids</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">node</span><span class="p">])</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">)</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">visited</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">graph_nodes</span><span class="p">:</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">node</span> <span class="o">=</span> <span class="n">bfs</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">adj_dict</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">visited</span><span class="p">,</span> <span class="n">color_lookup</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">out</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">out</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">)</span> <span class="k">else</span> <span class="n">out</span></code></pre></figure>
 
 
       
