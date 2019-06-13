@@ -43,9 +43,9 @@ def bfs(start, adj_dict, color, visited, color_lookup):
         node, distance = q.pop()
         for next_node in adj_dict[node]:
             if next_node not in visited:
+                visited.add(next_node)
                 if color_lookup[next_node] == color:
                     return distance+1, next_node
-                visited.add(next_node)
                 q.appendleft((next_node, distance+1))
     return -1, None
 
