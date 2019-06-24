@@ -2,6 +2,10 @@ Write ups of topics in coding and mathematics to help me remember them.
 
 My homepage is [here](https://mwpb.uk).
 
+### Dynamic programming
+
+* [Unfair candy distribution](unfair_candy_distribution.md)
+
 ### Hash tables
 
 * [Find the nearest repeated entries in an array](nearest_repeated_entries.md)

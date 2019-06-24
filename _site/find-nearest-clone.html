@@ -19,7 +19,7 @@
 {"description":"write ups of topics in coding and mathematics to help me remember them","@type":"WebPage","url":"http://localhost:4000/find-nearest-clone.html","headline":"Find nearest clone","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/assets/css/style.css?v=8e4255953dd8cee03ca4d7ab8d8eabcc17c3c562">
+    <link rel="stylesheet" href="/assets/css/style.css?v=760ab785fcdff40d612430393437d37ffab05abb">
   </head>
   <body>
     <div class="container-lg px-3 my-5 markdown-body">
@@ -74,9 +74,9 @@ The full solution might look like:</p>
         <span class="n">node</span><span class="p">,</span> <span class="n">distance</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">next_node</span> <span class="ow">in</span> <span class="n">adj_dict</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
             <span class="k">if</span> <span class="n">next_node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">next_node</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">color_lookup</span><span class="p">[</span><span class="n">next_node</span><span class="p">]</span> <span class="o">==</span> <span class="n">color</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">distance</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">next_node</span>
-                <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">next_node</span><span class="p">)</span>
                 <span class="n">q</span><span class="o">.</span><span class="n">appendleft</span><span class="p">((</span><span class="n">next_node</span><span class="p">,</span> <span class="n">distance</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
     <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">None</span>
 
