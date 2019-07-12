@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Java data structures | mwpb blog</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Java data structures" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="write ups of topics in coding and mathematics to help me remember them" />
+<meta property="og:description" content="write ups of topics in coding and mathematics to help me remember them" />
+<link rel="canonical" href="http://localhost:4000/java-data-structures.html" />
+<meta property="og:url" content="http://localhost:4000/java-data-structures.html" />
+<meta property="og:site_name" content="mwpb blog" />
+<script type="application/ld+json">
+{"description":"write ups of topics in coding and mathematics to help me remember them","@type":"WebPage","url":"http://localhost:4000/java-data-structures.html","headline":"Java data structures","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=aff6b1ae1ad25e02222b62962e5b1b546a5612a6">
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="http://localhost:4000/">mwpb blog</a></h1>
+      
+
+      <h1 id="java-data-structures">Java data structures</h1>
+
+<h2 id="default-values">Default values</h2>
+
+<ul>
+  <li>byte, short, int: <code class="highlighter-rouge">0</code></li>
+  <li>long: <code class="highlighter-rouge">0L</code></li>
+  <li>float: <code class="highlighter-rouge">0.0f</code></li>
+  <li>double: <code class="highlighter-rouge">0.0d</code></li>
+  <li>char: <code class="highlighter-rouge">'\u0000'</code> - the null character not <code class="highlighter-rouge">null</code></li>
+  <li>object (inc. String): <code class="highlighter-rouge">null</code></li>
+  <li>boolean: <code class="highlighter-rouge">false</code></li>
+</ul>
+
+<h2 id="arrays">Arrays</h2>
+
+<h3 id="initialisation-and-accessing-elements">Initialisation and accessing elements</h3>
+
+<p>Stores a fixed number of values of a single type in a continuous memory location.
+Default initialisation using default values above.
+Elements are accessed using the standard square brackets notation.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">[]</span> <span class="n">testArray</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">4</span><span class="o">];</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">testArray</span><span class="o">));</span>
+<span class="c1">// [0, 0, 0, 0]</span>
+<span class="n">testArray</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="n">testArray</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+<span class="n">testArray</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+<span class="n">testArray</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">testArray</span><span class="o">));</span>
+<span class="c1">// [0, 1, 1, 2]</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">secondTest</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">5</span><span class="o">]</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">};</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">testArray</span><span class="o">[</span><span class="mi">3</span><span class="o">]);</span>
+<span class="c1">// 2</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">secondTest</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+<span class="c1">// 1</span>
+</code></pre></div></div>
+
+<h3 id="standard-library-functions">Standard library functions</h3>
+
+<p>The <code class="highlighter-rouge">System</code> class provides a copy method that copies a specified number <code class="highlighter-rouge">length</code> of elements from a starting position <code class="highlighter-rouge">srcPos</code> of a source array <code class="highlighter-rouge">src</code> to a destination array <code class="highlighter-rouge">dest</code> beginning at the destination position <code class="highlighter-rouge">destPos</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">System</span><span class="o">.</span><span class="na">arraycopy</span><span class="o">(</span>   <span class="n">Object</span> <span class="n">src</span><span class="o">,</span> <span class="kt">int</span> <span class="n">srcPos</span><span class="o">,</span>
+                    <span class="n">Object</span> <span class="n">dest</span><span class="o">,</span> <span class="kt">int</span> <span class="n">destPos</span><span class="o">,</span> <span class="kt">int</span> <span class="n">length</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">java.util.Arrays</code> class contains other useful methods for instance:-</p>
+<ul>
+  <li><code class="highlighter-rouge">binarySearch</code>: binary search on a sorted array. (No guarantee which value is found.)</li>
+  <li><code class="highlighter-rouge">equals</code>: compares two arrays to see if they are equal.</li>
+  <li><code class="highlighter-rouge">sort</code> and <code class="highlighter-rouge">parallelSort</code> for sorting</li>
+  <li><code class="highlighter-rouge">fill</code> assigns multiple contiguous values at once</li>
+</ul>
+
+
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+    
+  </body>
+</html>
