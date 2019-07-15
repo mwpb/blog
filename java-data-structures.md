@@ -49,3 +49,33 @@ The `java.util.Arrays` class contains other useful methods for instance:-
 * `equals`: compares two arrays to see if they are equal.
 * `sort` and `parallelSort` for sorting
 * `fill` assigns multiple contiguous values at once
+
+## Stacks
+
+Use `java.util.Stack`.
+
+* Last-in is first-out.
+* Dynamic data structures without fixed size or memory allocation.
+
+```java
+import java.util.Stack;
+Stack<String> stk = new Stack<>();
+System.out.println(stk.empty());
+// true
+stk.push("0");
+System.out.println(stk.empty());
+// false
+stk.push("hi");
+stk.push("fifty");
+String top = stk.pop();
+System.out.println(top);
+// fifty
+String just_looking = stk.peek();
+System.out.println(just_looking);
+// hi
+String now_popping = stk.pop();
+System.out.println(now_popping);
+// hi
+```
+The `.empty()` method tell us if the stack is empty.
+The `.peek()` method gets the top element without removing it.
