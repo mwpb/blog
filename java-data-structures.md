@@ -77,5 +77,5 @@ String now_popping = stk.pop();
 System.out.println(now_popping);
 // hi
 ```
-The `.empty()` method tell us if the stack is empty.
+The `.empty()` method tells us if the stack is empty.
 The `.peek()` method gets the top element without removing it.
