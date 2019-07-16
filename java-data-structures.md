@@ -79,3 +79,62 @@ System.out.println(now_popping);
 ```
 The `.empty()` method tells us if the stack is empty.
 The `.peek()` method gets the top element without removing it.
+
+## Queues
+
+Use `java.util.LinkedList`.
+
+* The first element in is the first element out.
+* In Java there are two sets of methods:
+	* methods that throw exceptions when the operation is not possible
+	* methods that return special values when the operation is not possible
+* Need to import both `java.util.Queue` and `java.util.LinkedList`.
+
+For throwing exceptions on error:
+
+```java
+import java.util.LinkedList;
+import java.util.Queue;
+Queue<Integer> q = new LinkedList<Integer>();
+System.out.println(q.size());
+// 0
+q.add(5);
+System.out.println(q.size());
+// 1
+q.add(6);
+int just_looking = q.element();
+System.out.println(just_looking);
+// 5
+System.out.println(q.size());
+// 2
+int now_getting = q.remove();
+System.out.println(now_getting);
+// 5
+System.out.println(q.size());
+// 1
+```
+
+For returning special values:
+
+
+```java
+import java.util.LinkedList;
+import java.util.Queue;
+Queue<Integer> q = new LinkedList<Integer>();
+System.out.println(q.size());
+// 0
+q.offer(5);
+System.out.println(q.size());
+// 1
+q.offer(6);
+int just_looking = q.peek();
+System.out.println(just_looking);
+// 5
+System.out.println(q.size());
+// 2
+int now_getting = q.poll();
+System.out.println(now_getting);
+// 5
+System.out.println(q.size());
+// 1
+```
