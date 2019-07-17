@@ -82,7 +82,7 @@ The `.peek()` method gets the top element without removing it.
 
 ## Queues
 
-Use `java.util.LinkedList`.
+Use `java.util.Queue` implemented by `java.util.LinkedList`.
 
 * The first element in is the first element out.
 * In Java there are two sets of methods:
@@ -137,4 +137,35 @@ System.out.println(now_getting);
 // 5
 System.out.println(q.size());
 // 1
+```
+
+## Hash tables
+
+Use `java.util.Map` interface implemented by `HashMap` class.
+
+* Provides `O(1)` lookup time for objects.
+* It uniformly distributes the objects across an array.
+* Then a 'hash function' converts lookup keys to the integers that specify the index where the object is in the array.
+
+The hash function should be:-
+
+1. Easy to compute.
+2. Uniformly distribution in length of array.
+3. Minimise collisions where the different keys give the same index.
+
+In the case of collisions an `O(k)` lookup is performed where `k` is the number of entries with the same index.
+
+```java
+import java.util.Map;
+import java.util.HashMap;
+Map<String, Integer> cache = new HashMap<String, Integer>();
+cache.put("first", 1);
+cache.put("second", 2);
+System.out.println(cache.get("first"));
+// 1
+cache.remove("second");
+System.out.println(cache.get("second"));
+// null
+System.out.println(cache.getOrDefault("second", 0));
+// 0
 ```
