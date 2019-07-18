@@ -169,3 +169,57 @@ System.out.println(cache.get("second"));
 System.out.println(cache.getOrDefault("second", 0));
 // 0
 ```
+
+## Linked lists
+
+Use `java.util.LinkedList`.
+
+This implements a *doubly linked* list which keeps pointers to both the first and the last elements.
+So accessing the first and last elements as well as adding to the start and end are all `O(1)` operations.
+If trying to do something with an inner node then it will go from either the start or end depending on what is closer.
+
+Again there are two sets of operations.
+The first throws exceptions:
+```java
+import java.util.LinkedList;
+LinkedList<Integer> ll = new LinkedList<Integer>();
+System.out.println(ll.size());
+// 0
+ll.addFirst(0);
+ll.addFirst(-1);
+ll.addLast(2);
+System.out.println(ll.getFirst());
+// -1
+System.out.println(ll.getLast());
+// 2
+ll.removeFirst();
+System.out.println(ll.getFirst());
+// 0
+ll.removeLast();
+System.out.println(ll.getLast());
+// 0
+System.out.println(ll.size());
+// 1
+```
+and the second returns `null` instead of an exception:
+```java
+import java.util.LinkedList;
+LinkedList<Integer> ll = new LinkedList<Integer>();
+System.out.println(ll.size());
+// 0
+ll.offerFirst(0);
+ll.offerFirst(-1);
+ll.offerLast(2);
+System.out.println(ll.peekFirst());
+// -1
+System.out.println(ll.peekLast());
+// 2
+ll.pollFirst();
+System.out.println(ll.peekFirst());
+// 0
+ll.pollLast();
+System.out.println(ll.peekLast());
+// 0
+System.out.println(ll.size());
+	// 1
+```
