@@ -223,3 +223,36 @@ System.out.println(ll.peekLast());
 System.out.println(ll.size());
 	// 1
 ```
+
+## Trees
+
+Use `java.swing.tree.DefaultMutableTreeNode` that implements the `java.swing.tree.TreeNode` interface.
+This class and interface might not be available on all platforms.
+(But seems to be present on a default Java install on MacOS.)
+
+```java
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.DefaultMutableTreeNode;
+import java.util.*;
+DefaultMutableTreeNode root = new DefaultMutableTreeNode("Root");
+DefaultMutableTreeNode mercury = new DefaultMutableTreeNode("Mercury");
+root.add(mercury);
+DefaultMutableTreeNode venus = new DefaultMutableTreeNode("Venus");
+root.add(venus);
+DefaultMutableTreeNode mars = new DefaultMutableTreeNode("Mars");
+root.add(mars);
+Enumeration<TreeNode> children = root.children();
+while (children.hasMoreElements()) {
+	System.out.println(children.nextElement());
+}
+System.out.println("---");
+Enumeration<TreeNode> postOrder = root.depthFirstEnumeration();
+while (postOrder.hasMoreElements()) {
+	System.out.println(postOrder.nextElement());
+}
+```
+
+The implementation is that of an `n`-ary tree where the children are stored as an array.
+However this array is protected an we instead get and `Enumeration` when accessing `node.children()`.
+The class `DefaultMutableTreeNode` has quite a few 'extra' methods.
+The most obviously useful one is an implementation of the postorder depth first search.
