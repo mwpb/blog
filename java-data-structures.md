@@ -170,6 +170,14 @@ System.out.println(cache.getOrDefault("second", 0));
 // 0
 ```
 
+### Sets
+
+Use `java.util.HashSet` which implements the `java.util.Set` interface.
+
+* `.add(e)` adds the element `e`
+* `.remove(e)` removes the element `e`
+* `.isEmpty()` and `.size()` do what their name suggests
+
 ## Linked lists
 
 Use `java.util.LinkedList`.
