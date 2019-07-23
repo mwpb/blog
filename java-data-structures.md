@@ -176,6 +176,7 @@ Use `java.util.HashSet` which implements the `java.util.Set` interface.
 
 * `.add(e)` adds the element `e`
 * `.remove(e)` removes the element `e`
+* `.contains(e)` checks if an element is in the set
 * `.isEmpty()` and `.size()` do what their name suggests
 
 ## Linked lists
