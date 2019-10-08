@@ -26,10 +26,9 @@ instead:
 
 Rather than
 ```java
-new HashSet<String>() {{
-    add("a");
-    add("b");
-}};
+Set<String>s = new HashSet<String>();
+set.add("a"); 
+set.add("b");
 ```
 instead
 ```java
