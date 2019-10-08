@@ -2,6 +2,11 @@ Write ups of topics in coding and mathematics to help me remember them.
 
 My homepage is [here](https://mwpb.uk).
 
+### Java notes
+
+* [Java initialisation shortcuts](java-init-shortcuts.md)
+* [Java built-in data structures](java-data-structures.md)
+
 ### Dynamic programming
 
 * [Unfair candy distribution](unfair_candy_distribution.md)
@@ -28,10 +33,6 @@ My homepage is [here](https://mwpb.uk).
 
 * [Python built-in data structures](python-data-structures.md)
 * [Implement queue with two stacks](q-with-two-stacks.md)
-
-### Java data structures
-
-* [Java built-in data structures](java-data-structures.md)
 
 ### Eigenvectors and eigenvalues without determinants
 
