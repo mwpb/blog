@@ -22,6 +22,19 @@ instead:
 "ACGT".toCharArray();
 ```
 
+## Initialising a list
+
+Rather than any of:
+```java
+List<String> supplierNames1 = new ArrayList<String>();
+List<String> supplierNames2 = new LinkedList<String>();
+List<String> supplierNames3 = new Vector<String>();
+```
+instead
+```java
+List.of();
+```
+
 ## Initialising a set
 
 Rather than
