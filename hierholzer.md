@@ -11,11 +11,11 @@ so that the second entry of any domino is the first entry of the next domino.
 If it is not possible we must return an exception.
 
 We choose to model this problem using a graph.
-Each of the numbers occurring on the dominoes becomes and vertex.
+Each of the numbers occurring on the dominoes becomes a vertex.
 Each of the dominoes `[i, j]` describes an edge from `i` to `j` and an edge from `j` to `i`.
 Then the problem has been transformed to the problem of finding a Eulerian cycle in this graph.
-Once we have used a domino `[i, j]` we remove precisely one edge from `i` to `j` and precisely on edge from `j` to `i`.
-First we convert the list of dominoes to an adjacency list within a `Dominoes` class:
+Once we have used a domino `[i, j]` we remove precisely one edge from `i` to `j` and precisely one edge from `j` to `i`.
+So first we convert the list of dominoes to an adjacency list within a `Dominoes` class:
 
 ```java
 Map<Integer, List<Integer>> adjList;
@@ -49,7 +49,7 @@ void existsEulerCycle() throws ChainNotFoundException {
 }
 ```
 
-The idea behind Hierholzer's algorithm is to find any cycle in the graph and then iteratively enlarge the cycle to find the Eulerian cycle.
+The idea behind Hierholzer's algorithm is to find any cycle in the graph and then iteratively enlarge the cycle to find a Eulerian cycle.
 So first we need a method that finds any cycle starting at a vertex:
 
 ```java
@@ -89,7 +89,7 @@ boolean addCycle() {
 	return true;
 }
 ```
-If we repeatedly call the `addCycle` method until there are no vertices left in the adjacency list then `this.cycle` will contain the Eulerian cycle.
+If we repeatedly call the `addCycle` method until there are no vertices left in the adjacency list then `this.cycle` will contain a Eulerian cycle.
 The whole Java class is as follows and it passes all the tests on the `Exercism` platform.
 
 ```java
