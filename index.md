@@ -5,7 +5,7 @@ My homepage is [here](https://mwpb.uk).
 ### Java notes
 
 * [Java initialisation shortcuts](java-init-shortcuts.md)
-* [Java built-in data structures](java-data-structures.md)
+<!-- * [Java built-in data structures](java-data-structures.md) -->
 
 ### Dynamic programming
 
@@ -24,6 +24,7 @@ My homepage is [here](https://mwpb.uk).
 
 * [Road and libraries](roads-and-libraries.md)
 * [Find nearest clone](find-nearest-clone.md)
+* [Hierholzer’s algorithm for Eulerian circuits](hierholzer.md)
 
 ### Bit twiddles
 
