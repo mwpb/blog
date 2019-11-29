@@ -5,6 +5,7 @@ My homepage is [here](https://mwpb.uk).
 ### Java notes
 
 <!-- * [Java initialisation shortcuts](java-init-shortcuts.md) -->
+* [Java common tasks](java-common-tasks.md)
 * [Java built-in data structures](java-data-structures.md)
 
 ### Dynamic programming
