@@ -52,92 +52,15 @@ The `java.util.Arrays` class contains other useful methods for instance:-
 
 ## Stacks
 
-Use `java.util.Stack`.
+Use [java.util.Deque](https://docs.oracle.com/javase/7/docs/api/java/util/Deque.html) implemented by [java.util.ArrayDeque](https://docs.oracle.com/javase/7/docs/api/java/util/ArrayDeque.html).
 
-* Last-in is first-out.
-* Dynamic data structures without fixed size or memory allocation.
-
-```java
-import java.util.Stack;
-Stack<String> stk = new Stack<>();
-System.out.println(stk.empty());
-// true
-stk.push("0");
-System.out.println(stk.empty());
-// false
-stk.push("hi");
-stk.push("fifty");
-String top = stk.pop();
-System.out.println(top);
-// fifty
-String just_looking = stk.peek();
-System.out.println(just_looking);
-// hi
-String now_popping = stk.pop();
-System.out.println(now_popping);
-// hi
-```
-The `.empty()` method tells us if the stack is empty.
-The `.peek()` method gets the top element without removing it.
+Since a deque is a 'double ended queue' it can be used as a queue or a stack.
 
 ## Queues
 
-Use `java.util.Queue` implemented by `java.util.LinkedList`.
+Use [java.util.Deque](https://docs.oracle.com/javase/7/docs/api/java/util/Deque.html) implemented by [java.util.ArrayDeque](https://docs.oracle.com/javase/7/docs/api/java/util/ArrayDeque.html).
 
-* The first element in is the first element out.
-* In Java there are two sets of methods:
-	* methods that throw exceptions when the operation is not possible
-	* methods that return special values when the operation is not possible
-* Need to import both `java.util.Queue` and `java.util.LinkedList`.
-
-For throwing exceptions on error:
-
-```java
-import java.util.LinkedList;
-import java.util.Queue;
-Queue<Integer> q = new LinkedList<Integer>();
-System.out.println(q.size());
-// 0
-q.add(5);
-System.out.println(q.size());
-// 1
-q.add(6);
-int just_looking = q.element();
-System.out.println(just_looking);
-// 5
-System.out.println(q.size());
-// 2
-int now_getting = q.remove();
-System.out.println(now_getting);
-// 5
-System.out.println(q.size());
-// 1
-```
-
-For returning special values:
-
-
-```java
-import java.util.LinkedList;
-import java.util.Queue;
-Queue<Integer> q = new LinkedList<Integer>();
-System.out.println(q.size());
-// 0
-q.offer(5);
-System.out.println(q.size());
-// 1
-q.offer(6);
-int just_looking = q.peek();
-System.out.println(just_looking);
-// 5
-System.out.println(q.size());
-// 2
-int now_getting = q.poll();
-System.out.println(now_getting);
-// 5
-System.out.println(q.size());
-// 1
-```
+Since a deque is a 'double ended queue' it can be used as a queue or a stack.
 
 ## Hash tables
 
