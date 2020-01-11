@@ -188,3 +188,7 @@ The implementation is that of an `n`-ary tree where the children are stored as a
 However this array is protected an we instead get and `Enumeration` when accessing `node.children()`.
 The class `DefaultMutableTreeNode` has quite a few 'extra' methods.
 The most obviously useful one is an implementation of the postorder depth first search.
+
+## Min heap
+
+```PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();```
