@@ -10,6 +10,14 @@
 * object (inc. String): `null`
 * boolean: `false`
 
+## ArrayList
+
+For most uses of lists or arrays.
+
+## ArrayDeque
+
+For most requirements involving a double ended queue.
+
 ## Arrays
 
 ### Initialisation and accessing elements
