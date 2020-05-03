@@ -8,6 +8,10 @@ My homepage is [here](https://mwpb.uk).
 * [Java common tasks](java-common-tasks.md)
 * [Java built-in data structures](java-data-structures.md)
 
+### Programming concepts
+
+* [Object oriented programming](object_oriented_programming.md)
+
 ### Dynamic programming
 
 * [Unfair candy distribution](unfair_candy_distribution.md)
