@@ -1,5 +1,11 @@
 # Java common tasks
 
+## String split on line break
+
+```java
+String lines[] = input.split("\\R");
+```
+
 ## Parsing and reading
 
 The class `java.util.Scanner` provides a iterator-like methods to parse input.
